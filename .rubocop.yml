@@ -9,3 +9,10 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
+RSpec/ImplicitExpect:
+  EnforcedStyle: should
