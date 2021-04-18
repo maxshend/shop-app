@@ -5,6 +5,7 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
+import "../stylesheets/application.css"
 
 Rails.start()
 Turbolinks.start()

@@ -8,7 +8,7 @@ services:
       args:
         RUBY_VERSION: '3.0.1'
         PG_MAJOR: '13'
-        NODE_MAJOR: '11'
+        NODE_MAJOR: '14'
         YARN_VERSION: '1.22.5'
         BUNDLER_VERSION: '2.2.15'
     image: shop-app-dev:1.0.0
