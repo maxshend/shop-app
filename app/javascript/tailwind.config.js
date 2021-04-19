@@ -1,5 +1,8 @@
 module.exports = {
-  purge: ['./app/views/**/*.html.erb'],
+  purge: [
+    './app/views/**/*.html.erb',
+    './app/views/**/*.html.slim'
+  ],
   darkMode: false,
   theme: {
     extend: {},
