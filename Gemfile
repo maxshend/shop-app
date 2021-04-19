@@ -52,8 +52,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'fuubar'
+  gem 'selenium-webdriver', '~> 4.0.0.beta3'
   gem 'shoulda-matchers'
   gem 'webmock'
 end

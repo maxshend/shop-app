@@ -40,10 +40,14 @@ services:
       HISTFILE: /app/log/.bash_history
       PSQL_HISTFILE: /app/log/.psql_history
       EDITOR: nano
+      SELENIUM_HUB_URL: http://chrome:4444/wd/hub
+      RAILS_APP_URL: http://rails:3000
     depends_on:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      chrome:
         condition: service_healthy
 
   rails:
@@ -96,6 +100,16 @@ services:
     environment:
       <<: *env
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+
+  chrome:
+    image: selenium/standalone-chrome:3.141.59
+    ports:
+      - '4444:4444'
+    healthcheck:
+      test: /opt/bin/check-grid.sh --host 0.0.0.0 --port 4444
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
 volumes:
   postgres:
