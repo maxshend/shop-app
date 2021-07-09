@@ -20,9 +20,13 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
+gem 'oj', '~> 3.12'
+
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'active_interaction', '~> 4.0'
+gem 'kaminari', '~> 1.2'
 gem 'money-rails', '~> 1.12'
 
 gem 'carrierwave', '~> 2.0'

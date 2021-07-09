@@ -6,6 +6,8 @@ class Product < ApplicationRecord
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
+  scope :active, -> { where active: true }
+
   monetize :price_cents
   monetize :old_price_cents
 

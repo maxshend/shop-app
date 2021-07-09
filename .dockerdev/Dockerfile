@@ -50,6 +50,7 @@ RUN apt-get update -qq && DEBIAN_FRONTEND=noninteractive apt-get -yq dist-upgrad
     libpq-dev \
     postgresql-client-$PG_MAJOR \
     nodejs \
+    imagemagick \
     yarn \
     $(grep -Ev '^\s*#' /tmp/Aptfile | xargs) && \
     apt-get clean && \

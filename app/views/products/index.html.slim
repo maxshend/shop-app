@@ -1,1 +1,4 @@
-= react_component 'HelloWorld', greeting: 'Hello from react-rails.'
+= react_component( \
+  'Products', \
+  products: render(partial: '/products/products', formats: :json, locals: { products: @products }) \
+)
