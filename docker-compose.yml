@@ -42,6 +42,7 @@ services:
       EDITOR: nano
       SELENIUM_HUB_URL: http://chrome:4444/wd/hub
       RAILS_APP_URL: http://rails:3000
+      ASSET_HOST: http://localhost:3000
     depends_on:
       postgres:
         condition: service_healthy

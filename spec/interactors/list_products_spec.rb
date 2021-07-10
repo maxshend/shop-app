@@ -26,7 +26,7 @@ RSpec.describe ListProducts do
   end
 
   describe 'with additional params' do
-    context 'when params ara valid' do
+    context 'when params are valid' do
       before do
         active_products.first.update! title: found_product.title
         create :product_category, product: active_products.last, category: product_category.category

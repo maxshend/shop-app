@@ -11,7 +11,7 @@ class ListProducts < ActiveInteraction::Base
   def execute
     products = Product.active.order created_at: :desc
     products = products.where('LOWER(title) LIKE ?', "%#{title.downcase}%") if title.present?
-    products = products.joins(:categories).where categories: { id: categories } if categories.present?
+    products = products.joins(:categories).where(categories: { id: categories }) if categories.present?
 
     products.page(page).per per_page
   end

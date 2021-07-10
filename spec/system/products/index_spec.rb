@@ -12,12 +12,12 @@ RSpec.describe 'List products', type: :system do
   end
 
   it 'shows valid number of products' do
-    expect(page).to have_css('li', count: active_products.size)
+    expect(page).to have_css('.product-item', count: active_products.size)
   end
 
   it 'shows a list of active products' do
     active_products.each do |product|
-      expect(page).to have_css('li', text: "#{product.title} #{product.id}")
+      expect(page).to have_css('.product-item', text: product.title)
     end
   end
 end
