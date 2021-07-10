@@ -4,9 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'List products', type: :system do
   let!(:active_products) { create_list :product, 3, :active }
-  let(:disabled_products) { create_list :product, 2, :disabled }
 
-  before { visit products_path }
+  before do
+    create_list :product, 2, :disabled
+
+    visit products_path
+  end
 
   it 'shows valid number of products' do
     expect(page).to have_css('li', count: active_products.size)
