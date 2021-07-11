@@ -1,10 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
+
 import Product from './Product';
+import SearchBox from './SearchBox';
 
 class Products extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.filterProducts = this.filterProducts.bind(this);
+  }
+
+  filterProducts(query) {
+    console.log('Filter products by: ', query);
+  }
+
   render() {
-    const listProducts = JSON.parse(this.props.products).products.map(product => {
+    const productsList = JSON.parse(this.props.products).products.map(product => {
       return (
         <Product
           key={product.id}
@@ -17,7 +29,8 @@ class Products extends React.Component {
 
     return (
       <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-        {listProducts}
+        <SearchBox searchCallback={this.filterProducts} />
+        {productsList}
       </div>
     );
   }
