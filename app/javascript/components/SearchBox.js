@@ -6,6 +6,7 @@ class SearchBox extends React.Component {
     super(props);
 
     this.changeHandler = this.changeHandler.bind(this);
+    this.clearQuery = this.clearQuery.bind(this);
     this.state = { query: "" };
   }
 
@@ -17,9 +18,15 @@ class SearchBox extends React.Component {
     event.preventDefault();
   }
 
+  clearQuery() {
+    this.setState({query: ''}, () => {
+      this.props.searchCallback(this.state.query);
+    });
+  }
+
   render() {
     return (
-      <div className="flex-none">
+      <div className="flex flex-row gap-x-1">
         <input
           type="text"
           value={this.state.query}
@@ -27,6 +34,7 @@ class SearchBox extends React.Component {
           onChange={this.changeHandler}
           placeholder="Search..."
         />
+        <button onClick={this.clearQuery}>Clear</button>
       </div>
     );
   }
