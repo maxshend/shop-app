@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   root to: 'products#index'
 
   resources :products, only: %i[index]
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :products, only: %i[index]
+    end
+  end
 end
