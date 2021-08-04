@@ -1,8 +1,50 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React, { useState, useEffect } from "react"
 
 import Product from './Product';
 import SearchBox from './SearchBox';
+
+function Products() {
+  const [products, updateProducts] = useState([]);
+  const [error, updateError] = useState(null);
+  useEffect(() => {
+    fetchProducts(updateProducts, updateError);
+
+    return;
+  }, []);
+
+  let productsList = null;
+  const filterProducts = (query) => {
+    const params = new URLSearchParams({
+      title: query
+    });
+
+    fetchProducts(updateProducts, updateError, params);
+  };
+
+  if (error) {
+    productsList = <ProductsError />
+  } else if (products.length === 0) {
+    productsList = <ProductsNotFound />
+  } else {
+    productsList = products.map(product => {
+      return (
+        <Product
+          key={product.id}
+          id={product.id}
+          title={product.title}
+          poster={product.poster}
+        />
+      );
+    });
+  }
+
+  return (
+    <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
+      <SearchBox searchCallback={filterProducts} />
+      {productsList}
+    </div>
+  );
+}
 
 function ProductsNotFound() {
   return (
@@ -20,70 +62,17 @@ function ProductsError() {
   );
 }
 
-class Products extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { error: null, products: [] };
-    this.filterProducts = this.filterProducts.bind(this);
-  }
-
-  fetchProducts(params = '') {
-    fetch(`/api/v1/products?${params}`)
-    .then(res => res.json())
-    .then(
-      (res) => {
-        this.setState({products: res.products});
-      },
-      (err) => {
-        this.setState({error: err});
-      }
-    );
-  }
-
-  filterProducts(query) {
-    const params = new URLSearchParams({
-      title: query
-    });
-
-    this.fetchProducts(params)
-  }
-
-  componentDidMount() {
-    this.fetchProducts();
-  }
-
-  render() {
-    let productsList = null;
-
-    if (this.state.error) {
-      productsList = <ProductsError />
-    } else if (this.state.products.length === 0) {
-      productsList = <ProductsNotFound />
-    } else {
-      productsList = this.state.products.map(product => {
-        return (
-          <Product
-            key={product.id}
-            id={product.id}
-            title={product.title}
-            poster={product.poster}
-          />
-        );
-      });
+function fetchProducts(updateProducts, updateError, params = '') {
+  fetch(`/api/v1/products?${params}`)
+  .then(res => res.json())
+  .then(
+    (res) => {
+      updateProducts(res.products);
+    },
+    (err) => {
+      updateError(err);
     }
-
-    return (
-      <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-        <SearchBox searchCallback={this.filterProducts} />
-        {productsList}
-      </div>
-    );
-  }
+  );
 }
-
-Products.propTypes = {
-  products: PropTypes.string
-};
 
 export default Products;
