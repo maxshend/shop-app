@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Suspense } from "react";
 
 import Product from './Product';
 import SearchBox from './SearchBox';
+import Spinner from './Spinner';
+import Header from './Header';
 
 function Products() {
   const [products, updateProducts] = useState([]);
-  const [error, updateError] = useState(null);
   useEffect(() => {
     fetchProducts(updateProducts, updateError);
 
     return;
   }, []);
+  const [error, updateError] = useState(null);
 
   let productsList = null;
   const filterProducts = (query) => {
@@ -39,10 +41,13 @@ function Products() {
   }
 
   return (
-    <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-      <SearchBox searchCallback={filterProducts} />
-      {productsList}
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <Header />
+      <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
+        <SearchBox searchCallback={filterProducts} />
+        {productsList}
+      </div>
+    </Suspense>
   );
 }
 

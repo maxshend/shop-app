@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 
 import UseDebounceInput from "../hooks/UseDebounceInput";
 
@@ -9,6 +10,7 @@ function SearchBox(props) {
   useEffect(() => {
     props.searchCallback(debouncedQuery);
   }, [debouncedQuery]);
+  const [t] = useTranslation();
 
   const changeHandler = (event) => {
     event.preventDefault();
@@ -24,9 +26,9 @@ function SearchBox(props) {
         value={query}
         className="w-full border-2 border-gray p-1"
         onChange={changeHandler}
-        placeholder="Search..."
+        placeholder={t("search")}
       />
-      <button onClick={clearQuery}>Clear</button>
+      <button onClick={clearQuery}>{t("clear")}</button>
     </div>
   );
 };
