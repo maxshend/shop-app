@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from 'react-i18next';
 
 import UseDebounceInput from "../hooks/UseDebounceInput";
 
 function SearchBox(props) {
+  const isInitialMount = useRef(true);
   const [query, setQuery] = useState("");
   const debouncedQuery = UseDebounceInput(query);
   useEffect(() => {
-    props.searchCallback(debouncedQuery);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      props.searchCallback(debouncedQuery);
+    }
   }, [debouncedQuery]);
   const [t] = useTranslation();
 

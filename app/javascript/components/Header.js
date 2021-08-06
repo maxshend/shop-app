@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../packs/i18n';
 
 function Header() {
+  const isInitialMount = useRef(true);
   const [_, i18n] = useTranslation();
   const [language, setLanguage] = useState(i18n.language);
   useEffect(() => {
-    i18n.changeLanguage(language);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      i18n.changeLanguage(language);
+    }
   }, [language]);
 
   const changeHandler = (event) => {
