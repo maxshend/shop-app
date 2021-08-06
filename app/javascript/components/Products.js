@@ -6,7 +6,7 @@ import Spinner from './Spinner';
 import Header from './Header';
 
 function Products() {
-  const [products, updateProducts] = useState([]);
+  const [products, updateProducts] = useState(null);
   useEffect(() => {
     fetchProducts(updateProducts, updateError);
 
@@ -25,6 +25,8 @@ function Products() {
 
   if (error) {
     productsList = <ProductsError />
+  } else if (products === null) {
+    productsList = <Spinner />;
   } else if (products.length === 0) {
     productsList = <ProductsNotFound />
   } else {

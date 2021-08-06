@@ -8,7 +8,7 @@ export const LANGUAGES = ['en', 'ua', 'ru'];
 i18n.use(Backend).use(initReactI18next).init({
   fallbackLng: LANGUAGES[0],
   supportedLngs: LANGUAGES,
-  debug: true,
+  debug: false,
   interpolation: {
     escapeValue: false
   }
