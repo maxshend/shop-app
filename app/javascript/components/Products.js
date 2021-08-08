@@ -1,36 +1,20 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React from "react";
+import { useTranslation } from 'react-i18next';
 
 import Product from './Product';
-import SearchBox from './SearchBox';
 import Spinner from './Spinner';
-import Header from './Header';
 
-function Products() {
-  const [products, updateProducts] = useState(null);
-  useEffect(() => {
-    fetchProducts(updateProducts, updateError);
-
-    return;
-  }, []);
-  const [error, updateError] = useState(null);
-
+function Products(props) {
   let productsList = null;
-  const filterProducts = (query) => {
-    const params = new URLSearchParams({
-      title: query
-    });
 
-    fetchProducts(updateProducts, updateError, params);
-  };
-
-  if (error) {
+  if (props.error) {
     productsList = <ProductsError />
-  } else if (products === null) {
+  } else if (props.products === null) {
     productsList = <Spinner />;
-  } else if (products.length === 0) {
+  } else if (props.products.length === 0) {
     productsList = <ProductsNotFound />
   } else {
-    productsList = products.map(product => {
+    productsList = props.products.map(product => {
       return (
         <Product
           key={product.id}
@@ -42,43 +26,26 @@ function Products() {
     });
   }
 
-  return (
-    <Suspense fallback={<Spinner />}>
-      <Header />
-      <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-        <SearchBox searchCallback={filterProducts} />
-        {productsList}
-      </div>
-    </Suspense>
-  );
+  return productsList;
 }
 
 function ProductsNotFound() {
+  const [t] = useTranslation();
+
   return (
     <div className="text-center">
-      <span className="text-gray-500">Products not found</span>
+      <span className="text-gray-500">{t("errors.products.not_found")}</span>
     </div>
   );
 }
 
 function ProductsError() {
+  const [t] = useTranslation();
+
   return (
     <div className="text-center">
-      <span className="font-bold text-red-400">Cannot load products</span>
+      <span className="font-bold text-red-400">{t("errors.products.load")}</span>
     </div>
-  );
-}
-
-function fetchProducts(updateProducts, updateError, params = '') {
-  fetch(`/api/v1/products?${params}`)
-  .then(res => res.json())
-  .then(
-    (res) => {
-      updateProducts(res.products);
-    },
-    (err) => {
-      updateError(err);
-    }
   );
 }
 

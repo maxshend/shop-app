@@ -1,4 +1,10 @@
 {
   "search": "Search",
-  "clear": "Clear"
+  "clear": "Clear",
+  "errors": {
+    "products": {
+      "not_found": "Products not found",
+      "load": "Cannot load products"
+    }
+  }
 }
