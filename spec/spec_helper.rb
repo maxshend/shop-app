@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-require 'simplecov'
+if ARGV.grep(/spec.\w+/).empty?
+  require 'simplecov'
 
-SimpleCov.start 'rails' do
-  enable_coverage :branch
+  SimpleCov.start 'rails' do
+    enable_coverage :branch
+  end
 end
 
 RSpec.configure do |config|

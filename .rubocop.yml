@@ -18,5 +18,8 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
+Naming/MethodParameterName:
+  MinNameLength: 1
+
 RSpec/ImplicitExpect:
   EnforcedStyle: should

@@ -18,7 +18,7 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
     price { rand 1..1000 }
     old_price { rand 1..1000 }
-    status { 0 }
+    status { Product.statuses.values.first }
     quantity { rand 1..100 }
     poster do
       Rack::Test::UploadedFile.new(Rails.root.join('spec/support/assets/test.jpg'), 'image/jpeg')

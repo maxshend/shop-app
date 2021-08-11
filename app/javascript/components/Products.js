@@ -21,6 +21,9 @@ function Products(props) {
           id={product.id}
           title={product.title}
           poster={product.poster}
+          price={product.price}
+          old_price={product.old_price}
+          status={product.status}
         />
       );
     });
