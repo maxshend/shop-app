@@ -25,7 +25,7 @@ RSpec.describe ListProducts do
     end
   end
 
-  describe 'with additional params' do
+  describe 'with additional filter params' do
     context 'when params are valid' do
       before do
         active_products.first.update! title: found_product.title

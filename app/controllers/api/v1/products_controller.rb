@@ -11,6 +11,10 @@ module Api
         @products = outcome.result
       end
 
+      def statuses
+        @statuses = ListProductStatuses.run!
+      end
+
       private
 
       def index_params
