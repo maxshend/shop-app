@@ -61,6 +61,7 @@ group :test do
   gem 'fuubar'
   gem 'selenium-webdriver', '~> 4.0.0.beta3'
   gem 'shoulda-matchers'
+  gem 'simplecov', require: false
   gem 'webmock'
 end
 
