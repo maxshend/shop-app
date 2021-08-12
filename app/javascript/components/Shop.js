@@ -4,22 +4,23 @@ import Products from './Products';
 import SearchBox from './SearchBox';
 import Spinner from './Spinner';
 import Header from './Header';
+import ProductStatusSelect from './ProductStatusSelect';
 
 function Shop() {
-  const [products, updateProducts] = useState(null);
+  const [products, setProducts] = useState(null);
   useEffect(() => {
-    fetchProducts(updateProducts, updateError);
+    fetchProducts(setProducts, setError);
 
     return;
   }, []);
-  const [error, updateError] = useState(null);
+  const [error, setError] = useState(null);
 
   const filterProducts = (query) => {
     const params = new URLSearchParams({
       title: query
     });
 
-    fetchProducts(updateProducts, updateError, params);
+    fetchProducts(setProducts, setError, params);
   };
 
   return (
@@ -27,21 +28,22 @@ function Shop() {
       <Header />
       <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
         <SearchBox searchCallback={filterProducts} />
+        <ProductStatusSelect />
         <Products products={products} error={error} />
       </div>
     </Suspense>
   );
 }
 
-function fetchProducts(updateProducts, updateError, params = '') {
+function fetchProducts(setProducts, setError, params = '') {
   fetch(`/api/v1/products?${params}`)
   .then(res => res.json())
   .then(
     (res) => {
-      updateProducts(res.products);
+      setProducts(res.products);
     },
     (err) => {
-      updateError(err);
+      setError(err);
     }
   );
 }

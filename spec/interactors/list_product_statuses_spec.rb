@@ -7,9 +7,9 @@ RSpec.describe ListProductStatuses do
 
   it 'returns possible product statuses' do
     expect(statuses).to eq [
-      ['In Stock', 0],
-      ['Out Of Stock', 1],
-      ['Coming Soon', 2]
+      { name: 'In Stock', key: 'in_stock' },
+      { name: 'Out Of Stock', key: 'out_of_stock' },
+      { name: 'Coming Soon', key: 'coming_soon' }
     ]
   end
 end

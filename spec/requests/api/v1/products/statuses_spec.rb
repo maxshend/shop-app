@@ -14,6 +14,6 @@ RSpec.describe 'GET /api/v1/products/statuses', type: :request do
   end
 
   it 'returns possible product statuses' do
-    expect(json).to eq 'statuses' => statuses
+    expect(json).to eq 'statuses' => statuses.map(&:stringify_keys)
   end
 end
