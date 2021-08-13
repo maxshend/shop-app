@@ -30,4 +30,5 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.include Helpers::Request, type: :request
+  config.include Helpers::Interactor, type: :interactor
 end

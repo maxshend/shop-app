@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ListProducts do
+RSpec.describe ListProducts, type: :interactor do
   let!(:active_products) { create_list :product, 3, :active }
 
   before do

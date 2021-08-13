@@ -1,0 +1,9 @@
+ua:
+  activerecord:
+    attributes:
+      product:
+        statuses:
+          all: "Всі"
+          in_stock: "В наявності"
+          out_of_stock: "Немає в наявності"
+          coming_soon: "Скоро"

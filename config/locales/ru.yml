@@ -1,0 +1,9 @@
+ru:
+  activerecord:
+    attributes:
+      product:
+        statuses:
+          all: "Все"
+          in_stock: "В наличии"
+          out_of_stock: "Нет в продаже"
+          coming_soon: "Скоро появится"

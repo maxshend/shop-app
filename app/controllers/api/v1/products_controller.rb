@@ -12,13 +12,17 @@ module Api
       end
 
       def statuses
-        @statuses = ListProductStatuses.run!
+        @statuses = ListProductStatuses.run! statuses_params
       end
 
       private
 
       def index_params
-        params.permit :page, :per_page, :title
+        params.permit :page, :per_page, :title, :status
+      end
+
+      def statuses_params
+        params.permit :lang
       end
     end
   end

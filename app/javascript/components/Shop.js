@@ -8,27 +8,34 @@ import ProductStatusSelect from './ProductStatusSelect';
 
 function Shop() {
   const [products, setProducts] = useState(null);
+  const [queryParams, setQueryParams] = useState(new URLSearchParams());
   useEffect(() => {
-    fetchProducts(setProducts, setError);
+    fetchProducts(setProducts, setError, queryParams);
 
     return;
-  }, []);
+  }, [queryParams]);
   const [error, setError] = useState(null);
 
-  const filterProducts = (query) => {
-    const params = new URLSearchParams({
-      title: query
+  const filterByTitle = (query) => {
+    setQueryParams((prevState) => {
+      prevState.set("title", query);
+      return new URLSearchParams(prevState.toString());
     });
+  };
 
-    fetchProducts(setProducts, setError, params);
+  const filterByStatus = (query) => {
+    setQueryParams((prevState) => {
+      prevState.set("status", query);
+      return new URLSearchParams(prevState.toString());
+    });
   };
 
   return (
     <Suspense fallback={<Spinner />}>
       <Header />
       <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-        <SearchBox searchCallback={filterProducts} />
-        <ProductStatusSelect />
+        <SearchBox searchCallback={filterByTitle} />
+        <ProductStatusSelect searchCallback={filterByStatus} />
         <Products products={products} error={error} />
       </div>
     </Suspense>

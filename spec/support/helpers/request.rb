@@ -10,7 +10,7 @@ module Helpers
       {
         'id' => p.id,
         'title' => p.title,
-        'status' => Product.human_enum_name(:status, p.status),
+        'status' => Product.human_enum_name(name: :status, value: p.status),
         'poster' => p.poster.url(:thumb),
         'price' => p.price.format,
         'old_price' => p.old_price.format

@@ -3,6 +3,7 @@ en:
     attributes:
       product:
         statuses:
+          all: "All"
           in_stock: "In Stock"
           out_of_stock: "Out Of Stock"
           coming_soon: "Coming Soon"

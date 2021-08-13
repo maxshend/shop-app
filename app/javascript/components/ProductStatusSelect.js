@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 
-function ProductStatusSelect() {
+function ProductStatusSelect(props) {
+  const isInitialMount = useRef(true);
+  const [_, i18n] = useTranslation();
   const [status, setStatus] = useState("");
   const [error, setError] = useState(null);
   const [statuses, setStatuses] = useState([]);
-
   useEffect(() => {
-    fetchStatuses(setStatuses, setError);
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      props.searchCallback(status);
+    }
 
     return;
-  }, []);
+  }, [status]);
+  useEffect(() => {
+    fetchStatuses(setStatuses, setError, i18n.language);
+  }, [i18n.language]);
 
   function changeHandler(event) {
     event.preventDefault();
@@ -31,8 +41,8 @@ function ProductStatusSelect() {
   );
 }
 
-function fetchStatuses(setStatuses, setError) {
-  fetch('/api/v1/products/statuses')
+function fetchStatuses(setStatuses, setError, language) {
+  fetch(`/api/v1/products/statuses?lang=${language}`)
   .then(res => res.json())
   .then(
     (res) => {
@@ -43,5 +53,9 @@ function fetchStatuses(setStatuses, setError) {
     }
   );
 }
+
+ProductStatusSelect.propTypes = {
+  searchCallback: PropTypes.func
+};
 
 export default ProductStatusSelect;

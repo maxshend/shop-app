@@ -7,6 +7,12 @@ class Product < ApplicationRecord
   has_many :categories, through: :product_categories
 
   scope :active, -> { where active: true }
+  scope :with_categories, lambda { |categories|
+    categories ? joins(:categories).where(categories: { id: categories }) : all
+  }
+  scope :with_title, lambda { |title|
+    title ? where('LOWER(title) LIKE ?', "%#{title.downcase}%") : all
+  }
 
   monetize :price_cents
   monetize :old_price_cents

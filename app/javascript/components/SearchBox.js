@@ -14,6 +14,8 @@ function SearchBox(props) {
     } else {
       props.searchCallback(debouncedQuery);
     }
+
+    return;
   }, [debouncedQuery]);
   const [t] = useTranslation();
 
@@ -36,7 +38,7 @@ function SearchBox(props) {
       <button onClick={clearQuery}>{t("clear")}</button>
     </div>
   );
-};
+}
 
 SearchBox.propTypes = {
   searchCallback: PropTypes.func
