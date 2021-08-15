@@ -25,6 +25,49 @@ RSpec.describe ListProducts, type: :interactor do
     end
   end
 
+  describe 'with price filtering' do
+    let(:price) { 1_000 }
+
+    context 'when min price passed' do
+      before do
+        active_products.each { |p| p.update!(price: 0) && p.reload }
+      end
+
+      let!(:found_product) { create :product, :active, price: price }
+      let!(:products) { described_class.run! min_price: price }
+
+      it 'returns filtered results' do
+        expect(products).to eq [found_product]
+      end
+    end
+
+    context 'when max price passed' do
+      before do
+        active_products.each { |p| p.update!(price: price + 1) && p.reload }
+      end
+
+      let!(:found_product) { create :product, :active, price: price }
+      let!(:products) { described_class.run! max_price: price * 100 }
+
+      it 'returns filtered results' do
+        expect(products).to eq [found_product]
+      end
+    end
+
+    context 'when price range passed' do
+      before do
+        active_products.each { |p| p.update!(price: 0) && p.reload }
+      end
+
+      let!(:found_product) { create :product, :active, price: price }
+      let!(:products) { described_class.run! min_price: (price - 1) * 100, max_price: (price + 1) * 100 }
+
+      it 'returns filtered results' do
+        expect(products).to eq [found_product]
+      end
+    end
+  end
+
   describe 'with additional filter params' do
     context 'when params are valid' do
       before do
