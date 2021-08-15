@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useTranslation } from 'react-i18next';
 
 import Product from './Product';
@@ -31,6 +32,11 @@ function Products(props) {
 
   return productsList;
 }
+
+Products.propTypes = {
+  error: PropTypes.object,
+  products: PropTypes.array
+};
 
 function ProductsNotFound() {
   const [t] = useTranslation();

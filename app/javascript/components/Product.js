@@ -26,7 +26,10 @@ function Product(props) {
 Product.propTypes = {
   id: PropTypes.number,
   title: PropTypes.string,
-  poster: PropTypes.string
+  poster: PropTypes.string,
+  price: PropTypes.string,
+  old_price: PropTypes.string,
+  status: PropTypes.string
 };
 
 export default Product;
