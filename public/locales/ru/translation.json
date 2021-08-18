@@ -1,6 +1,8 @@
 {
   "search": "Поиск",
   "clear": "Очистить",
+  "min_price": "Мин. Цена",
+  "max_price": "Макс. Цена",
   "errors": {
     "products": {
       "not_found": "Товары не найдено",

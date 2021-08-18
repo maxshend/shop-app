@@ -18,7 +18,7 @@ module Api
       private
 
       def index_params
-        params.permit :page, :per_page, :title, :status
+        params.permit :page, :per_page, :title, :status, :min_price, :max_price
       end
 
       def statuses_params

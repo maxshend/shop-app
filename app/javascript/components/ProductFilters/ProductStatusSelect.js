@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 function ProductStatusSelect(props) {
   const isInitialMount = useRef(true);
@@ -19,6 +19,8 @@ function ProductStatusSelect(props) {
   }, [status]);
   useEffect(() => {
     fetchStatuses(setStatuses, setError, i18n.language);
+
+    return;
   }, [i18n.language]);
 
   function changeHandler(event) {

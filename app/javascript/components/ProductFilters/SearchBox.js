@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
-import useDebounceInput from "../hooks/useDebounceInput";
+import useDebounceInput from "../../hooks/useDebounceInput";
 
 function SearchBox(props) {
   const isInitialMount = useRef(true);

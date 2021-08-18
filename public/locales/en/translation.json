@@ -1,6 +1,8 @@
 {
   "search": "Search",
   "clear": "Clear",
+  "min_price": "Min Price",
+  "max_price": "Max Price",
   "errors": {
     "products": {
       "not_found": "Products not found",

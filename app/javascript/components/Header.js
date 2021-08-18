@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import { LANGUAGES } from '../packs/i18n';
 
 function Header() {
@@ -13,6 +13,8 @@ function Header() {
     } else {
       i18n.changeLanguage(language);
     }
+
+    return;
   }, [language]);
 
   const changeHandler = (event) => {
