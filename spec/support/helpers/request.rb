@@ -16,5 +16,12 @@ module Helpers
         'old_price' => p.old_price.format
       }
     end
+
+    def category_attrs(c)
+      {
+        'id' => c.id,
+        'name' => c.name
+      }
+    end
   end
 end

@@ -12,7 +12,11 @@ module Api
       end
 
       def statuses
-        @statuses = ListProductStatuses.run! statuses_params
+        outcome = ListProductStatuses.run statuses_params
+
+        return render_resource_errors outcome unless outcome.valid?
+
+        @statuses = outcome.result
       end
 
       private

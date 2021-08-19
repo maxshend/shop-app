@@ -13,7 +13,7 @@ RSpec.describe 'GET /api/v1/products/statuses', type: :request do
     expect(response).to have_http_status :ok
   end
 
-  it 'returns possible product statuses' do
+  it 'returns available product statuses' do
     expect(json).to eq 'statuses' => statuses.map(&:stringify_keys)
   end
 end

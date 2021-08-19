@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ListProductStatuses, type: :interactor do
   let!(:statuses) { described_class.run! }
 
-  it 'returns possible product statuses' do
+  it 'returns available product statuses' do
     expect(statuses).to eq product_statuses_enum
   end
 end
