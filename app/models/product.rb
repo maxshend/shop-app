@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_many :categories, through: :product_categories
 
   scope :active, -> { where active: true }
-  scope :with_status, ->(status) { status.nil? ? all : where(status: status) }
+  scope :with_status, ->(status) { status.blank? ? all : where(status: status) }
   scope :with_categories, lambda { |categories|
     categories.nil? ? all : joins(:categories).where(categories: { id: categories })
   }

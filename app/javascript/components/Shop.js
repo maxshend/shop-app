@@ -4,6 +4,7 @@ import Products from './Products';
 import Spinner from './Spinner';
 import Header from './Header';
 import ProductStatusSelect from './ProductFilters/ProductStatusSelect';
+import CategorySelect from './ProductFilters/CategorySelect';
 import SearchBox from './ProductFilters/SearchBox';
 import PriceRange from './ProductFilters/PriceRange';
 
@@ -11,6 +12,7 @@ const titleParam = "title";
 const statusParam = "status";
 const minPriceParam = "min_price";
 const maxPriceParam = "max_price";
+const categoriesParam = "categories";
 
 function Shop() {
   const [products, setProducts] = useState(null);
@@ -32,6 +34,7 @@ function Shop() {
   const filterByStatus = (query) => {
     setQueryParams((prevState) => {
       prevState.set(statusParam, query);
+
       return new URLSearchParams(prevState.toString());
     });
   };
@@ -56,12 +59,22 @@ function Shop() {
     });
   };
 
+  const filterByCategory = (query) => {
+    setQueryParams((prevState) => {
+      prevState.delete(`${categoriesParam}[]`);
+      query.forEach((q) => prevState.append(`${categoriesParam}[]`, parseInt(q)));
+
+      return new URLSearchParams(prevState.toString());
+    });
+  };
+
   return (
     <Suspense fallback={<Spinner />}>
       <Header />
       <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
         <SearchBox searchCallback={filterByTitle} />
         <ProductStatusSelect searchCallback={filterByStatus} />
+        <CategorySelect searchCallback={filterByCategory} />
         <PriceRange searchCallback={filterByPrice} />
         <Products products={products} error={error} />
       </div>

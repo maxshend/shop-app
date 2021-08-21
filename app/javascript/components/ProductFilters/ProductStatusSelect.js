@@ -28,13 +28,13 @@ function ProductStatusSelect(props) {
     setStatus(event.target.value);
   }
 
-  if (error) {
-    return null;
-  }
-
   const values = statuses.map((status) => {
     return <option key={status.key} value={status.key}>{status.name}</option>
   });
+
+  if (error || values.length === 0) {
+    return null;
+  }
 
   return (
     <select value={status} onChange={changeHandler}>
