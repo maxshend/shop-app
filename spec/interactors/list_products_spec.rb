@@ -76,8 +76,8 @@ RSpec.describe ListProducts, type: :interactor do
       end
 
       let!(:found_product) { create :product, :active, title: 'Found!' }
-      let!(:products) { described_class.run! title: 'ound!', categories: [product_category.category_id] }
       let!(:product_category) { create :product_category, product: found_product }
+      let!(:products) { described_class.run! title: 'ound!', categories: [product_category.category_id] }
 
       it 'returns filtered results' do
         expect(products).to eq [found_product]

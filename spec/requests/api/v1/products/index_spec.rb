@@ -29,13 +29,15 @@ RSpec.describe 'GET /api/v1/products', type: :request do
 
   describe 'with params' do
     let!(:product) { create :product }
+    let!(:product_category) { create :product_category, product: product }
 
     before do
       create_list :product, 2
 
       get '/api/v1/products', params: {
         page: 1, per_page: 1, title: product.title, status: product.status,
-        min_price: product.price_cents, max_price: product.price_cents + 1
+        min_price: product.price_cents, max_price: product.price_cents + 1,
+        categories: [product_category.category_id]
       }
     end
 
