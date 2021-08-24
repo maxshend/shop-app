@@ -10,5 +10,9 @@ module Helpers
         { name: 'Coming Soon', key: 'coming_soon' }
       ]
     end
+
+    def available_locales
+      %w[en ua ru]
+    end
   end
 end

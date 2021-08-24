@@ -44,7 +44,7 @@ function ProductStatusSelect(props) {
 }
 
 function fetchStatuses(setStatuses, setError, language) {
-  fetch(`/api/v1/products/statuses?lang=${language}`)
+  fetch(`/api/v1/products/statuses?locale=${language}`)
   .then(res => res.json())
   .then(
     (res) => {

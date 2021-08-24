@@ -12,21 +12,13 @@ module Api
       end
 
       def statuses
-        outcome = ListProductStatuses.run statuses_params
-
-        return render_resource_errors outcome unless outcome.valid?
-
-        @statuses = outcome.result
+        @statuses = ListProductStatuses.run!
       end
 
       private
 
       def index_params
         params.permit :page, :per_page, :title, :status, :min_price, :max_price, categories: []
-      end
-
-      def statuses_params
-        params.permit :lang
       end
     end
   end
