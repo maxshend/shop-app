@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 function CategorySelect(props) {
   const isInitialMount = useRef(true);
@@ -18,10 +19,12 @@ function CategorySelect(props) {
 
     return;
   }, [...selectedCategories]);
+  const [_, i18n] = useTranslation();
   useEffect(() => {
-    fetchCategories(setCategories, setError);
+    fetchCategories(setCategories, setError, i18n.language);
+
     return;
-  }, []);
+  }, [i18n.language]);
 
   const changeHandler = (event, categoryID) => {
     event.preventDefault();
@@ -56,8 +59,8 @@ function CategorySelect(props) {
   );
 }
 
-function fetchCategories(setCategories, setError) {
-  fetch('/api/v1/categories')
+function fetchCategories(setCategories, setError, language) {
+  fetch(`/api/v1/categories?locale=${language}`)
   .then(res => res.json())
   .then(
     (res) => {

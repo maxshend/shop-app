@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 function ProductStatusSelect(props) {
   const isInitialMount = useRef(true);
-  const [_, i18n] = useTranslation();
   const [status, setStatus] = useState("");
   const [error, setError] = useState(null);
   const [statuses, setStatuses] = useState([]);
@@ -17,6 +16,7 @@ function ProductStatusSelect(props) {
 
     return;
   }, [status]);
+  const [_, i18n] = useTranslation();
   useEffect(() => {
     fetchStatuses(setStatuses, setError, i18n.language);
 

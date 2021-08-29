@@ -25,12 +25,20 @@ gem 'oj', '~> 3.12'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'active_interaction', '~> 4.0'
+# Pagination
 gem 'kaminari', '~> 1.2'
-gem 'money-rails', '~> 1.12'
 
+# I18n
+gem 'mobility', '~> 1.1.3'
+
+# Files attachments
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick', '~> 4.0'
+
+# Managing application-specific business logic
+gem 'active_interaction', '~> 4.0'
+
+gem 'money-rails', '~> 1.12'
 
 gem 'slim-rails', '~> 3.2'
 
