@@ -11,13 +11,13 @@ function PriceRange(props) {
     <div>
       <NumericFilter
         className="flex flex-col"
-        label={t('min_price')}
+        label={t("min_price")}
         name="minPrice"
         searchCallback={props.searchCallback}
       />
       <NumericFilter
         className="flex flex-col"
-        label={t('max_price')}
+        label={t("max_price")}
         name="maxPrice"
         searchCallback={props.searchCallback}
       />

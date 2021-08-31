@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { useTranslation } from "react-i18next";
-import { LANGUAGES } from '../packs/i18n';
 
 function Header() {
   const isInitialMount = useRef(true);
@@ -48,7 +47,7 @@ function Header() {
 }
 
 function fetchLanguages(setLanguages, setError) {
-  fetch('/api/v1/locales')
+  fetch("/api/v1/locales")
   .then(res => res.json())
   .then(
     (res) => {

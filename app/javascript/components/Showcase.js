@@ -1,12 +1,11 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import Products from './Products';
-import Spinner from './Spinner';
-import ProductStatusSelect from './ProductFilters/ProductStatusSelect';
-import CategorySelect from './ProductFilters/CategorySelect';
-import SearchBox from './ProductFilters/SearchBox';
-import PriceRange from './ProductFilters/PriceRange';
+import Products from "./Products";
+import ProductStatusSelect from "./ProductFilters/ProductStatusSelect";
+import CategorySelect from "./ProductFilters/CategorySelect";
+import SearchBox from "./ProductFilters/SearchBox";
+import PriceRange from "./ProductFilters/PriceRange";
 
 const titleParam = "title";
 const statusParam = "status";
@@ -70,19 +69,17 @@ function Showcase() {
   };
 
   return (
-    <Suspense fallback={<Spinner />}>
-      <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
-        <SearchBox searchCallback={filterByTitle} />
-        <ProductStatusSelect searchCallback={filterByStatus} />
-        <CategorySelect searchCallback={filterByCategory} />
-        <PriceRange searchCallback={filterByPrice} />
-        <Products products={products} error={error} />
-      </div>
-    </Suspense>
+    <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
+      <SearchBox searchCallback={filterByTitle} />
+      <ProductStatusSelect searchCallback={filterByStatus} />
+      <CategorySelect searchCallback={filterByCategory} />
+      <PriceRange searchCallback={filterByPrice} />
+      <Products products={products} error={error} />
+    </div>
   );
 }
 
-function fetchProducts(setProducts, setError, params = '', language) {
+function fetchProducts(setProducts, setError, params = "", language) {
   fetch(`/api/v1/products?locale=${language}&${params}`)
   .then(res => res.json())
   .then(

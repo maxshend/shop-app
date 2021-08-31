@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
-import Product from './Product';
-import Spinner from './Spinner';
+import Product from "./Product";
+import Spinner from "./Spinner";
 
 function Products(props) {
   let productsList = null;
