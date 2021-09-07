@@ -30,7 +30,11 @@ function Products(props) {
     });
   }
 
-  return productsList;
+  return (
+    <div className="flex grid grid-cols-1 sm:grid-cols-2 sm:gap-x-3 lg:grid-cols-4">
+      {productsList}
+    </div>
+  );
 }
 
 Products.propTypes = {

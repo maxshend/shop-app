@@ -28,7 +28,7 @@ function NumericFilter(props) {
         {props.label}
       </label>
       <input
-        className="w-100"
+        className="w-100 border"
         type="number"
         value={value}
         onChange={changeMinHandler}

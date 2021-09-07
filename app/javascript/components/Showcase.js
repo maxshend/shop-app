@@ -69,11 +69,15 @@ function Showcase() {
   };
 
   return (
-    <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 p-2">
+    <div className="bg-white flex grid grid-cols-1 content-start gap-y-3 py-2 px-5">
       <SearchBox searchCallback={filterByTitle} />
-      <ProductStatusSelect searchCallback={filterByStatus} />
-      <CategorySelect searchCallback={filterByCategory} />
-      <PriceRange searchCallback={filterByPrice} />
+      <div className="sm:flex sm:grid lg:grid-cols-4 sm:gap-x-3">
+        <div className="sm:col-span-1">
+          <ProductStatusSelect searchCallback={filterByStatus} />
+          <PriceRange searchCallback={filterByPrice} />
+          <CategorySelect searchCallback={filterByCategory} />
+        </div>
+      </div>
       <Products products={products} error={error} />
     </div>
   );

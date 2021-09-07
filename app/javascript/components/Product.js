@@ -13,7 +13,7 @@ function Product(props) {
 
   return (
     <div className="product-item flex-none">
-      <img src={props.poster} alt={props.title} />
+      <img src={props.poster} alt={props.title} className="w-full"/>
       <div className="flex justify-between">
         <div>{price}</div>
         <div>{props.status}</div>
