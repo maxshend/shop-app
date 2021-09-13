@@ -29,6 +29,7 @@ function SearchBox(props) {
   return (
     <div className="flex flex-row gap-x-1">
       <input
+        id="searchInput"
         type="text"
         value={query}
         className="w-full border-2 border-gray p-1"

@@ -38,7 +38,9 @@ function ProductStatusSelect(props) {
 
   return (
     <div>
-      <select value={status} onChange={changeHandler} className="w-full">{values}</select>
+      <select id="status_select" value={status} onChange={changeHandler} className="w-full">
+        {values}
+      </select>
     </div>
   );
 }

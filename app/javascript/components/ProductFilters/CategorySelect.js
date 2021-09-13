@@ -55,7 +55,7 @@ function CategorySelect(props) {
   }
 
   return (
-    <div>{values}</div>
+    <div id="category_select">{values}</div>
   );
 }
 

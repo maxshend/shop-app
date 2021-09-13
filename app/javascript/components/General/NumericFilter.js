@@ -28,6 +28,8 @@ function NumericFilter(props) {
         {props.label}
       </label>
       <input
+        id={`${props.name}Input`}
+        name={props.name}
         className="w-100 border"
         type="number"
         value={value}
@@ -39,7 +41,8 @@ function NumericFilter(props) {
 
 NumericFilter.propTypes = {
   searchCallback: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  name: PropTypes.string,
 };
 
 export default NumericFilter;
