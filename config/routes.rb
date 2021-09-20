@@ -5,7 +5,16 @@ Rails.application.routes.draw do
 
   resources :products, only: %i[index]
 
+  namespace :admin do
+    root to: 'products#index'
+    resources :products, only: %i[index]
+  end
+
   namespace :api, defaults: { format: :json } do
+    namespace :admin do
+      resources :products
+    end
+
     namespace :v1 do
       resources :locales, only: %i[index]
       resources :categories, only: %i[index]
