@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
+
+import Spinner from "../Spinner";
 
 import Header from "./Header";
 import Products from "./Products";
@@ -6,11 +8,11 @@ import Filters from "./Filters";
 
 function Dashboard() {
   return (
-    <div>
+    <Suspense fallback={<Spinner />}>
       <Header />
       <Filters />
       <Products />
-    </div>
+    </Suspense>
   );
 }
 

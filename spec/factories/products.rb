@@ -20,6 +20,7 @@ FactoryBot.define do
     old_price { rand 1..1000 }
     status { Product.statuses.values.first }
     quantity { rand 1..100 }
+    active { Faker::Boolean.boolean }
     poster do
       Rack::Test::UploadedFile.new(Rails.root.join('spec/support/assets/test.jpg'), 'image/jpeg')
     end

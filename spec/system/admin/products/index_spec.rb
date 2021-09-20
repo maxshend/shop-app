@@ -10,4 +10,8 @@ RSpec.describe 'List products', type: :system do
   it 'displays header' do
     expect(page).to have_css 'header'
   end
+
+  it 'displays products table' do
+    expect(page).to have_css '#productsTable'
+  end
 end

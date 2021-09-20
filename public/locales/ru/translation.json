@@ -3,6 +3,17 @@
   "clear": "Очистить",
   "min_price": "Мин. Цена",
   "max_price": "Макс. Цена",
+  "admin": {
+    "products": {
+      "id": "ID",
+      "name": "Имя",
+      "price": "Цена",
+      "quantity": "Количество",
+      "status": "Статус",
+      "active": "Активный",
+      "created_at": "Время создания"
+    }
+  },
   "errors": {
     "products": {
       "not_found": "Товары не найдено",

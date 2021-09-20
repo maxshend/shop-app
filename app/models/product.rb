@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :product_categories, dependent: :destroy
   has_many :categories, through: :product_categories
 
-  scope :active, -> { where active: true }
+  scope :active, ->(active) { active.nil? ? all : where(active: active) }
   scope :with_status, ->(status) { status.blank? ? all : where(status: status) }
   scope :with_categories, lambda { |categories|
     categories.nil? ? all : joins(:categories).where(categories: { id: categories })

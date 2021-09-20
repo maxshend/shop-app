@@ -17,6 +17,18 @@ module Helpers
       }
     end
 
+    def admin_product_attrs(p)
+      {
+        'id' => p.id,
+        'title' => p.title,
+        'quantity' => p.quantity,
+        'active' => p.active,
+        'status' => Product.human_enum_name(name: :status, value: p.status),
+        'price' => p.price.format,
+        'created_at' => I18n.l(p.created_at)
+      }
+    end
+
     def category_attrs(c)
       {
         'id' => c.id,

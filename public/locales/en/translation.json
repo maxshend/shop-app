@@ -3,6 +3,17 @@
   "clear": "Clear",
   "min_price": "Min Price",
   "max_price": "Max Price",
+  "admin": {
+    "products": {
+      "id": "ID",
+      "name": "Name",
+      "price": "Price",
+      "quantity": "Quantity",
+      "status": "Status",
+      "active": "Active",
+      "created_at": "Created At"
+    }
+  },
   "errors": {
     "products": {
       "not_found": "Products not found",

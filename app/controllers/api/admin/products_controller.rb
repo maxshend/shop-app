@@ -1,24 +1,20 @@
 # frozen_string_literal: true
 
 module Api
-  module V1
+  module Admin
     class ProductsController < Api::BaseController
       def index
-        outcome = ListProducts.run index_params.merge(active: true)
+        outcome = ListProducts.run index_params
 
         return render_resource_errors outcome unless outcome.valid?
 
         @products = outcome.result
       end
 
-      def statuses
-        @statuses = ListProductStatuses.run!
-      end
-
       private
 
       def index_params
-        params.permit :page, :per_page, :title, :status, :min_price, :max_price, categories: []
+        params.permit :page, :per_page, :title, :status, :active, :min_price, :max_price, categories: []
       end
     end
   end

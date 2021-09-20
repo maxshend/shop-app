@@ -7,12 +7,13 @@ class ListProducts < ActiveInteraction::Base
   string :status, default: nil
   integer :min_price, default: nil
   integer :max_price, default: nil
+  boolean :active, default: nil
   array :categories, default: nil do
     integer
   end
 
   def execute
-    products = Product.active.with_categories(categories).with_title(title).with_status(status)
+    products = Product.active(active).with_categories(categories).with_title(title).with_status(status)
                       .with_price_cents(min_price, max_price).order created_at: :desc
 
     products.page(page).per per_page

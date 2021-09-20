@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe ListProducts, type: :interactor do
-  let!(:active_products) { create_list :product, 3, :active }
-
-  before do
-    create_list :product, 2, :disabled
-  end
+  let!(:active_products) { create_list :product, 3 }
 
   describe 'with default pagination' do
     let!(:products) { described_class.run! }
@@ -77,7 +73,7 @@ RSpec.describe ListProducts, type: :interactor do
 
       let!(:found_product) { create :product, :active, title: 'Found!' }
       let!(:product_category) { create :product_category, product: found_product }
-      let!(:products) { described_class.run! title: 'ound!', categories: [product_category.category_id] }
+      let!(:products) { described_class.run! title: 'ound!', active: true, categories: [product_category.category_id] }
 
       it 'returns filtered results' do
         expect(products).to eq [found_product]
