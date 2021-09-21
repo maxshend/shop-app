@@ -18,7 +18,7 @@ function Showcase() {
   const [queryParams, setQueryParams] = useState(new URLSearchParams());
   const [_, i18n] = useTranslation();
   useEffect(() => {
-    fetchProducts(setProducts, setError, queryParams, i18n.language);
+    fetchProducts(setProducts, setError, i18n.language, queryParams);
 
     return;
   }, [queryParams, i18n.language]);
@@ -83,7 +83,7 @@ function Showcase() {
   );
 }
 
-function fetchProducts(setProducts, setError, params = "", language) {
+function fetchProducts(setProducts, setError, language, params = "",) {
   fetch(`/api/v1/products?locale=${language}&${params}`)
   .then(res => res.json())
   .then(

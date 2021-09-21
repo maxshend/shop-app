@@ -1,4 +1,11 @@
 ru:
+  time:
+    formats:
+      default: "%d.%m.%Y"
+      with_time: "%d.%m.%Y %k:%M"
+  date:
+    formats:
+      default: "%d.%m.%Y"
   activerecord:
     attributes:
       product:

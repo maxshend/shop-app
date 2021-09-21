@@ -3,6 +3,9 @@
   "clear": "Очистить",
   "min_price": "Мин. Цена",
   "max_price": "Макс. Цена",
+  "yes": "Да",
+  "no": "Нет",
+  "delete": "Удалить",
   "admin": {
     "products": {
       "id": "ID",

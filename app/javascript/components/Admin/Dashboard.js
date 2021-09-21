@@ -10,8 +10,10 @@ function Dashboard() {
   return (
     <Suspense fallback={<Spinner />}>
       <Header />
-      <Filters />
-      <Products />
+      <div className="p-3">
+        <Filters />
+        <Products />
+      </div>
     </Suspense>
   );
 }

@@ -1,4 +1,11 @@
 en:
+  time:
+    formats:
+      default: "%b %-d, %Y"
+      with_time: "%b %-d, %Y %I:%M%p"
+  date:
+    formats:
+      default: "%b %-d, %Y"
   activerecord:
     attributes:
       product:

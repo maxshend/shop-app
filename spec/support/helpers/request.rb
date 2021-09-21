@@ -25,7 +25,7 @@ module Helpers
         'active' => p.active,
         'status' => Product.human_enum_name(name: :status, value: p.status),
         'price' => p.price.format,
-        'created_at' => I18n.l(p.created_at)
+        'created_at' => I18n.l(p.created_at, format: :with_time)
       }
     end
 
