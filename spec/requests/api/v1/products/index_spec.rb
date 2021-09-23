@@ -51,4 +51,22 @@ RSpec.describe 'GET /api/v1/products', type: :request do
       )
     end
   end
+
+  describe 'with invalid params' do
+    before do
+      get '/api/v1/products', params: { min_price: 'invalid' }
+    end
+
+    it 'has unprocessable status' do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it 'returns errors' do
+      expect(json).to eq(
+        'errors' => [
+          { 'key' => 'min_price', 'messages' => ['Min price is not a valid integer'] }
+        ]
+      )
+    end
+  end
 end

@@ -1,4 +1,6 @@
 en:
+  errors:
+    not_found: "%{resource} not found"
   time:
     formats:
       default: "%b %-d, %Y"

@@ -35,5 +35,11 @@ module Helpers
         'name' => c.name
       }
     end
+
+    def fake_error(obj, attr, message)
+      allow(obj).to receive(:errors).and_return(
+        ActiveModel::Errors.new(obj).tap { |e| e.add(attr, message) }
+      )
+    end
   end
 end

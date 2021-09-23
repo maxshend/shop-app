@@ -45,4 +45,22 @@ RSpec.describe 'GET /api/admin/products', type: :request do
       )
     end
   end
+
+  describe 'with invalid params' do
+    before do
+      get '/api/admin/products', params: { active: 'invalid' }
+    end
+
+    it 'has unprocessable status' do
+      expect(response).to have_http_status :unprocessable_entity
+    end
+
+    it 'returns errors' do
+      expect(json).to eq(
+        'errors' => [
+          { 'key' => 'active', 'messages' => ['Active is not a valid boolean'] }
+        ]
+      )
+    end
+  end
 end
