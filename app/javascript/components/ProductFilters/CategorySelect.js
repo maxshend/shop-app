@@ -21,10 +21,24 @@ function CategorySelect(props) {
   }, [...selectedCategories]);
   const [_, i18n] = useTranslation();
   useEffect(() => {
-    fetchCategories(setCategories, setError, i18n.language);
+    fetchCategories();
 
     return;
   }, [i18n.language]);
+
+
+  const fetchCategories = () => {
+    fetch(`/api/v1/categories?locale=${i18n.language}`)
+    .then(res => res.json())
+    .then(
+      (res) => {
+        setCategories(res.categories)
+      },
+      (err) => {
+        setError(err);
+      }
+    );
+  };
 
   const changeHandler = (event, categoryID) => {
     event.preventDefault();
@@ -56,19 +70,6 @@ function CategorySelect(props) {
 
   return (
     <div id="category_select">{values}</div>
-  );
-}
-
-function fetchCategories(setCategories, setError, language) {
-  fetch(`/api/v1/categories?locale=${language}`)
-  .then(res => res.json())
-  .then(
-    (res) => {
-      setCategories(res.categories)
-    },
-    (err) => {
-      setError(err);
-    }
   );
 }
 

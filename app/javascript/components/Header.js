@@ -21,6 +21,19 @@ function Header() {
   }, [language]);
   const [error, setError] = useState(null);
 
+  const fetchLanguages = () => {
+    fetch("/api/v1/locales")
+    .then(res => res.json())
+    .then(
+      (res) => {
+        setLanguages(res.locales);
+      },
+      (err) => {
+        setError(err);
+      }
+    );
+  };
+
   const changeHandler = (event) => {
     event.preventDefault();
     setLanguage(event.target.value);
@@ -43,19 +56,6 @@ function Header() {
     <div className="flex justify-end">
       {languageSelect}
     </div>
-  );
-}
-
-function fetchLanguages(setLanguages, setError) {
-  fetch("/api/v1/locales")
-  .then(res => res.json())
-  .then(
-    (res) => {
-      setLanguages(res.locales);
-    },
-    (err) => {
-      setError(err);
-    }
   );
 }
 

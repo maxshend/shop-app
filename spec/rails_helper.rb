@@ -31,4 +31,5 @@ RSpec.configure do |config|
 
   config.include Helpers::Request, type: :request
   config.include Helpers::Interactor, type: :interactor
+  config.include Helpers::System, type: :system
 end

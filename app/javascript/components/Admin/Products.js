@@ -5,7 +5,7 @@ function Products() {
   const [t, i18n] = useTranslation();
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetchProducts(setProducts, setError, i18n.language);
+    fetchProducts();
 
     return;
   }, [i18n.language]);
@@ -13,6 +13,36 @@ function Products() {
   
   if (error) {
     return ProductsError(t);
+  }
+
+  const fetchProducts = () => {
+    fetch(`/api/admin/products?locale=${i18n.language}`)
+    .then(res => res.json())
+    .then(
+      (res) => {
+        setProducts(res.products);
+      },
+      (err) => {
+        setError(err)
+      }
+    );
+  };
+
+  const handleDestroyProduct = (e, id) => {
+    e.preventDefault()
+
+    fetch(`/api/admin/products/${id}`, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(
+      (res) => {
+        if (res.success) {
+          setProducts(products.filter((p) => p.id !== id));
+        }
+      },
+      (err) => {
+        setError(err);
+      }
+    );
   }
 
   const productsList = products.map(product => {
@@ -26,7 +56,7 @@ function Products() {
         <td className="border-2">{product.active ? t("yes") : t("no")}</td>
         <td className="border-2">{product.created_at}</td>
         <td className="border-2 text-blue-500">
-          <a href="">{t("delete")}</a>
+          <a className="deleteProductBtn" href="" onClick={(e) => handleDestroyProduct(e, product.id)}>{t("delete")}</a>
         </td>
       </tr>
     );
@@ -48,19 +78,6 @@ function Products() {
       </thead>
       <tbody>{productsList}</tbody>
     </table>
-  );
-}
-
-function fetchProducts(setProducts, setError, language, params = "") {
-  fetch(`/api/admin/products?locale=${language}&${params}`)
-  .then(res => res.json())
-  .then(
-    (res) => {
-      setProducts(res.products);
-    },
-    (err) => {
-      setError(err)
-    }
   );
 }
 

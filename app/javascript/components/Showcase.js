@@ -18,11 +18,24 @@ function Showcase() {
   const [queryParams, setQueryParams] = useState(new URLSearchParams());
   const [_, i18n] = useTranslation();
   useEffect(() => {
-    fetchProducts(setProducts, setError, i18n.language, queryParams);
+    fetchProducts();
 
     return;
   }, [queryParams, i18n.language]);
   const [error, setError] = useState(null);
+
+  const fetchProducts = () => {
+    fetch(`/api/v1/products?locale=${i18n.language}&${queryParams}`)
+    .then(res => res.json())
+    .then(
+      (res) => {
+        setProducts(res.products);
+      },
+      (err) => {
+        setError(err);
+      }
+    );
+  };
 
   const filterByTitle = (query) => {
     setQueryParams((prevState) => {
@@ -80,19 +93,6 @@ function Showcase() {
       </div>
       <Products products={products} error={error} />
     </div>
-  );
-}
-
-function fetchProducts(setProducts, setError, language, params = "",) {
-  fetch(`/api/v1/products?locale=${language}&${params}`)
-  .then(res => res.json())
-  .then(
-    (res) => {
-      setProducts(res.products);
-    },
-    (err) => {
-      setError(err);
-    }
   );
 }
 

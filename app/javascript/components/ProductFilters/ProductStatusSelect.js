@@ -18,15 +18,28 @@ function ProductStatusSelect(props) {
   }, [status]);
   const [_, i18n] = useTranslation();
   useEffect(() => {
-    fetchStatuses(setStatuses, setError, i18n.language);
+    fetchStatuses();
 
     return;
   }, [i18n.language]);
 
-  function changeHandler(event) {
+  const fetchStatuses = () => {
+    fetch(`/api/v1/products/statuses?locale=${i18n.language}`)
+    .then(res => res.json())
+    .then(
+      (res) => {
+        setStatuses(res.statuses)
+      },
+      (err) => {
+        setError(err);
+      }
+    );
+  };
+
+  const changeHandler = (event) => {
     event.preventDefault();
     setStatus(event.target.value);
-  }
+  };
 
   const values = statuses.map((status) => {
     return <option key={status.key} value={status.key}>{status.name}</option>
@@ -42,19 +55,6 @@ function ProductStatusSelect(props) {
         {values}
       </select>
     </div>
-  );
-}
-
-function fetchStatuses(setStatuses, setError, language) {
-  fetch(`/api/v1/products/statuses?locale=${language}`)
-  .then(res => res.json())
-  .then(
-    (res) => {
-      setStatuses(res.statuses)
-    },
-    (err) => {
-      setError(err);
-    }
   );
 }
 
