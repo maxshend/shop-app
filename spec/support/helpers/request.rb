@@ -29,6 +29,15 @@ module Helpers
       }
     end
 
+    def admin_user_attrs(u)
+      {
+        'id' => u.id,
+        'name' => u.name,
+        'email' => u.email,
+        'created_at' => I18n.l(u.created_at, format: :with_time)
+      }
+    end
+
     def category_attrs(c)
       {
         'id' => c.id,
