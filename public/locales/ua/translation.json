@@ -7,6 +7,12 @@
   "no": "Ні",
   "delete": "Видалити",
   "admin": {
+    "admin_users": {
+      "id": "ID",
+      "name": "Ім'я",
+      "email": "Email",
+      "created_at": "Час створення"
+    },
     "products": {
       "id": "ID",
       "name": "Ім'я",

@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   resources :products, only: %i[index]
 
   namespace :admin do
-    root to: 'products#index'
-    resources :products, only: %i[index]
+    get '(*all)', to: 'dashboard#index'
   end
 
   namespace :api, defaults: { format: :json } do

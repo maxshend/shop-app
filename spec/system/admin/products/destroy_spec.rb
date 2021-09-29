@@ -6,7 +6,7 @@ RSpec.describe 'Destroy a product', type: :system do
   let!(:products) { create_list :product, 5 }
 
   before do
-    visit admin_products_path
+    visit '/admin/products'
   end
 
   describe 'without errors' do

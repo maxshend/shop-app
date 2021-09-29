@@ -6,7 +6,7 @@ RSpec.describe 'List products', type: :system do
   let!(:products) { create_list :product, 5 }
 
   before do
-    visit admin_products_path
+    visit '/admin/products'
   end
 
   it 'displays header' do

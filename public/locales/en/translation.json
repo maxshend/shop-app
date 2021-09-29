@@ -7,6 +7,12 @@
   "no": "No",
   "delete": "Delete",
   "admin": {
+    "admin_users": {
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "created_at": "Created At"
+    },
     "products": {
       "id": "ID",
       "name": "Name",
