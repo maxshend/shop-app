@@ -33,7 +33,7 @@ function AdminUsers() {
   const handleDestroyUser = (e, id) => {
     e.preventDefault();
 
-    fetch(`/api/admin/admin_users/${id}`)
+    fetch(`/api/admin/admin_users/${id}`, { method: 'DELETE' })
     .then(res => res.json())
     .then(
       (res) => {
