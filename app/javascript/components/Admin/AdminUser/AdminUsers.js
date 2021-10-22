@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import DialogMessage from "../General/DialogMessage";
+import DialogMessage from "../../General/DialogMessage";
 
 function AdminUsers() {
   const [t, i18n] = useTranslation();
@@ -63,6 +64,9 @@ function AdminUsers() {
 
   return (
     <div>
+      <div className="mb-2">
+        <Link to="/admin/admin_users/new" className="button-add">{t("create")}</Link>
+      </div>
       <DialogMessage text={message} onClose={() => setMessage("")}/>
       <table id="adminUsersTable" className="w-full border-collapse border-2 table-auto">
         <thead className="bg-gray-200">

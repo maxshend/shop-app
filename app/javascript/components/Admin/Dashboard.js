@@ -5,7 +5,8 @@ import Spinner from "../Spinner";
 
 import Header from "./Header";
 import Products from "./Products";
-import AdminUsers from "./AdminUsers";
+import AdminUsers from "./AdminUser/AdminUsers";
+import AdminUserForm from "./AdminUser/AdminUserForm";
 
 function Dashboard() {
   return (
@@ -17,11 +18,14 @@ function Dashboard() {
             <Route exact path="/admin">
               <Products />
             </Route>
-            <Route path="/admin/admin_users">
+            <Route exact path="/admin/admin_users">
               <AdminUsers />
             </Route>
-            <Route path="/admin/products">
+            <Route exact path="/admin/products">
               <Products />
+            </Route>
+            <Route exact path="/admin/admin_users/new">
+              <AdminUserForm />
             </Route>
           </Switch>
         </div>

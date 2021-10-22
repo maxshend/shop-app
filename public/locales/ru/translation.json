@@ -7,7 +7,13 @@
   "yes": "Да",
   "no": "Нет",
   "delete": "Удалить",
+  "create": "Создать",
   "admin": {
+    "header": {
+      "dashboard": "Dashboard",
+      "products": "Товары",
+      "admin_users": "Администраторы"
+    },
     "admin_users": {
       "id": "ID",
       "name": "Имя",
