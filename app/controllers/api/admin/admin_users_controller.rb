@@ -13,6 +13,12 @@ module Api
         @admin_users = outcome.result
       end
 
+      def create
+        outcome = CreateAdminUser.run create_params
+
+        render_resource_errors outcome unless outcome.valid?
+      end
+
       def destroy
         render_resource_errors @admin_user unless @admin_user.destroy
       end
@@ -21,6 +27,10 @@ module Api
 
       def index_params
         params.permit :page, :per_page
+      end
+
+      def create_params
+        params.require(:admin_user).permit :email, :name
       end
 
       def set_admin_user

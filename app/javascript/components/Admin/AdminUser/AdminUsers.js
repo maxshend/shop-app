@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import DialogMessage from "../../General/DialogMessage";
+import InfoMessage from "../../General/InfoMessage";
 
 function AdminUsers() {
   const [t, i18n] = useTranslation();
+  const location = useLocation();
   const [users, setUsers] = useState([]);
   useEffect(() => {
     fetchUsers();
@@ -64,6 +66,7 @@ function AdminUsers() {
 
   return (
     <div>
+      <InfoMessage text={location.state ? location.state.textMessage : ""}/>
       <div className="mb-2">
         <Link to="/admin/admin_users/new" className="button-add">{t("create")}</Link>
       </div>

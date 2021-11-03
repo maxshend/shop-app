@@ -18,7 +18,6 @@ function NumericFilter(props) {
   }, [debouncedValue]);
 
   const changeMinHandler = (event) => {
-    event.preventDefault();
     setValue(event.target.value);
   };
 

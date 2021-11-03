@@ -8,6 +8,7 @@
   "no": "No",
   "delete": "Delete",
   "create": "Create",
+  "success": "Success",
   "admin": {
     "header": {
       "dashboard": "Dashboard",

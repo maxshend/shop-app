@@ -8,6 +8,7 @@
   "no": "Нет",
   "delete": "Удалить",
   "create": "Создать",
+  "success": "Успешно",
   "admin": {
     "header": {
       "dashboard": "Dashboard",

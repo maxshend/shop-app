@@ -23,3 +23,6 @@ Naming/MethodParameterName:
 
 RSpec/ImplicitExpect:
   EnforcedStyle: should
+
+RSpec/ExampleLength:
+  Enabled: false
