@@ -3,7 +3,7 @@
 module Api
   module Admin
     class AdminUsersController < Api::BaseController
-      before_action :set_admin_user, only: %i[destroy]
+      before_action :set_admin_user, only: %i[update destroy]
 
       def index
         outcome = ListAdminUsers.run index_params
@@ -15,6 +15,12 @@ module Api
 
       def create
         outcome = CreateAdminUser.run create_params
+
+        render_resource_errors outcome unless outcome.valid?
+      end
+
+      def update
+        outcome = UpdateAdminUser.run create_params.merge(user: @admin_user)
 
         render_resource_errors outcome unless outcome.valid?
       end
