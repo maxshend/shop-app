@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import DialogMessage from "../../General/DialogMessage";
 import InputError from "../../General/InputError";
 import { useHistory } from "react-router-dom";
 
-function AdminUserForm(props) {
+function AdminUserForm() {
   const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -76,9 +75,5 @@ function AdminUserForm(props) {
     </div>
   );
 }
-
-AdminUserForm.propTypes = {
-  adminUser: PropTypes.object,
-};
 
 export default AdminUserForm;
